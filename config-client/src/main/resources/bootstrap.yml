@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    config:
+      name: application-dev    #application
+      profile: conf              #profile
+      discovery:
+        enabled: true
+        service-id: CONFIG-SERVER
+     # uri: http://locahost:9002   #无注册中心时直接访问指定服务获取配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9001/eureka/
+  instance:
+    appname: ${spring.application.name}
+    prefer-ip-address: true

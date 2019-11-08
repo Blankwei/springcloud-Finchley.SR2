@@ -1,0 +1,23 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: config-server
+  messages:
+    encoding: utf-8
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:config/
+  profiles:
+    active: native
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9001/eureka/
+  instance:
+    appname: ${spring.application.name}
+    prefer-ip-address: true
