@@ -1,0 +1,32 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lowerCaseServiceId: true
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/test-user/**
+          filters:
+            - StripPrefix=1
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/test-order/**
+          filters:
+            - StripPrefix=1
+      default-filters:
+        - PreserveHostHeader
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9001/eureka/

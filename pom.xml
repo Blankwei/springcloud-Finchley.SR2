@@ -4,11 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.savoidage</groupId>
     <artifactId>springcloud</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>springcloud</name>
     <description>springc project for Spring Boot</description>
     <modules>
         <module>eureka-server</module>
+        <module>config-server</module>
+        <module>config-client</module>
     </modules>
 
 </project>
