@@ -11,6 +11,10 @@
         <module>eureka-server</module>
         <module>config-server</module>
         <module>config-client</module>
+        <module>order-service</module>
+        <module>user-service</module>
+        <module>common</module>
     </modules>
+
 
 </project>
