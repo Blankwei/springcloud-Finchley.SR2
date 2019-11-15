@@ -8,7 +8,7 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: false
+          enabled: true
           lowerCaseServiceId: true
       routes:
         - id: user-service
@@ -30,3 +30,18 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:9001/eureka/
+    # 开启健康检查
+    healthcheck:
+      enabled: true
+  # 使用ip替代实例
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"

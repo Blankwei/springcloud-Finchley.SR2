@@ -1,0 +1,72 @@
+spring:
+  application:
+    name: admin-server
+  profiles:
+    active:
+      - secure
+  mail:
+    host: smtp.qq.com
+    username: # xxxx@qq.com
+    password: # qq邮箱授权码
+    properties:
+      mail.debug: false
+      mail.smtp.auth: true   #安全认证(默认是true)
+      mail.smtp.port: 465
+      mail.smtp.ssl.enable: true  #开启ssl加密 否则项目启动时报530error
+      mail.smtp.ssl.socketFactory: sf
+      mail.smtp.starttls.enable: true
+      mail.smtp.starttls.required: true
+  boot:
+    admin:
+      notify:
+        mail:
+          to: xxxx@qq.com # 接收方
+          from: xxxx@qq.com # 发送方
+
+server:
+  port: 9004
+
+eureka:
+  instance:
+    # 加快心跳
+    leaseRenewalIntervalInSeconds: 10
+    # 注意路径的变化
+    health-check-url-path: /actuator/health
+    # 使用ip代替实例
+    prefer-ip-address: true
+  client:
+    registryFetchIntervalSeconds: 5
+    service-url:
+      defaultZone: http://localhost:9001/eureka/
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      # 配置暴露的接口
+      exposure:
+        include: "*"
+
+---
+spring:
+  profiles: insecure
+---
+spring:
+  profiles: secure
+  security:
+    user:
+      name: "admin"
+      password: "admin"
+  boot:
+    admin:
+      ui:
+        title: 服务监控中心
+
+# 注册eureka
+eureka:
+  instance:
+    metadata-map:
+      "uesr.name": ${spring.security.user.name}
+      "user.password": ${spring.security.user.password}
