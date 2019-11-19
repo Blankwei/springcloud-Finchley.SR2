@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    config:
+      name: demo-service    #application
+      profile: conf              #profile
+      discovery:
+        enabled: true
+        service-id: CONFIG-SERVER
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9001/eureka/
+  instance:
+    appname: ${spring.application.name}
+    prefer-ip-address: true

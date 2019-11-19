@@ -1,0 +1,40 @@
+spring:
+  messages:
+    encoding: utf-8
+  redis:
+    database: 1
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 10000ms
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 50
+        max-wait: 2000ms
+        min-idle: 0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9001/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 10
+    health-check-url-path: /actuator/health
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+feign:
+  hystrix:
+    enabled: true
+demo:
+  server:
+    name: demo-service

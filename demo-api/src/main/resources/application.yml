@@ -1,0 +1,9 @@
+
+server:
+  port: 9005
+
+spring:
+  application:
+    name: demo-api
+  messages:
+    encoding: UTF-8

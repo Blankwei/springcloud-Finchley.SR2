@@ -23,6 +23,18 @@ spring:
             - Path=/test-order/**
           filters:
             - StripPrefix=1
+        - id: demo-api
+          uri: lb://demo-api
+          predicates:
+            - Path=/test-api/**
+          filters:
+            - StripPrefix=1
+        - id: demo-service
+          uri: lb://demo-service
+          predicates:
+            - Path=/test-service/**
+          filters:
+            - StripPrefix=1
       default-filters:
         - PreserveHostHeader
 
