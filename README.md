@@ -15,3 +15,7 @@
 ##### order-service:9011
     此模块整合了redis，引入了common公共库，并进行了简单的测试。
 ##### gateway-server:9090
+
+#### 启动顺序：
+eureka-server >> gateway-server >> config-server >> admin-server
+##### 其他随意
