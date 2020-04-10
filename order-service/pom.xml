@@ -45,12 +45,19 @@
             <artifactId>spring-boot-admin-starter-client</artifactId>
         </dependency>
 
+        <!-- 引用mq -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
         <!-- 引用公共库 -->
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>common</artifactId>
             <version>1.0.0</version>
         </dependency>
+
     </dependencies>
 
     <dependencyManagement>

@@ -1,0 +1,6 @@
+server:
+  port: 9012
+
+spring:
+  application:
+    name: order-service
