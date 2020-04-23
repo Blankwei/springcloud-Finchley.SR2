@@ -13,6 +13,46 @@ spring:
         max-idle: 50
         max-wait: 2000ms
         min-idle: 0
+  cloud:
+    stream:
+      binders:
+        defaultRabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: 127.0.0.1
+                port: 5672
+                username: guest
+                password: guest
+                virtual-host: /
+      bindings:
+        # 不能使用下划线
+        input1:
+          # 对应mq的exchange
+          destination: myExchange1
+          content-type: application/json
+          binder: defaultRabbit
+          # 分组 对应mq的队列名称 并且持久化队列（未配置持久化 项目启动后会自动删除）
+          group: testReceiveGroup1
+        output1:
+          destination: myExchange1
+          content-type: application/json
+          binder: defaultRabbit
+        input2:
+          destination: myExchange2
+          content-type: application/json
+          binder: defaultRabbit
+          group: testReceiveGroup2
+        output2:
+          destination: myExchange2
+          content-type: application/json
+          binder: defaultRabbit
+#  rabbitmq:
+#    host: 127.0.0.1
+#    port: 5672
+#    username: guest
+#    password: guest
 
 eureka:
   client:

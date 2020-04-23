@@ -1,5 +1,8 @@
 package com.savoidage.demo.api.controller;
 
+import com.savoidage.common.entity.Student;
+import com.savoidage.demo.api.sender.SenderInter;
+import com.savoidage.demo.api.sender.impl.SenderImpl;
 import com.savoidage.demo.api.service.DemoApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +22,9 @@ public class DemoApiController {
     @Autowired
     private DemoApiService demoApiService;
 
+    @Autowired
+    private SenderImpl sender;
+
     @GetMapping(value = "/student/{stuId}")
     public String findOne(@PathVariable("stuId") Integer stuId){
         if(null == stuId){
@@ -26,5 +32,13 @@ public class DemoApiController {
         }
         String studentName = demoApiService.findOne(stuId);
         return "获取学生的名字：" + studentName;
+    }
+
+    @GetMapping(value = "/test")
+    public String testSendMsg(){
+        Student student = new Student();
+        student.setStudentName("章一位");
+        sender.send2(student);
+        return "success";
     }
 }
